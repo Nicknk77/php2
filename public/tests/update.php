@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
-$article = \App\Models\Article::findById(23);
+$article = \App\Models\Article::findById(48);
 
 $article->date = date('Y-m-d');
 $article->author = '555';

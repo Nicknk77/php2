@@ -9,4 +9,4 @@ $article->header = '000';
 $article->textPreview = '000';
 $article->text = '000000';
 
-$article->insert();
+var_dump($article->insert());

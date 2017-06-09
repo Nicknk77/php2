@@ -1,8 +1,6 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
-$article = \App\Models\Article::findById(31);
+$article = \App\Models\Article::findById(50);
 
-
-
-$article->delete();
+var_dump($article->delete());

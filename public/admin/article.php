@@ -1,6 +1,8 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
+use App\Models\Article;
+
 if (empty($_GET['id'])){
     header('Location: /');
     die();
@@ -8,6 +10,6 @@ if (empty($_GET['id'])){
 
 $id = (int)$_GET['id'];
 
-$article = \App\Models\Article::findById($id);
+$article = Article::findById($id);
 
 include __DIR__ . '/../templates/admin/article.php';
