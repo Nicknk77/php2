@@ -19,5 +19,4 @@ $article->textPreview = '000';
 $article->text = '000000';
 */
 
-
 var_dump($article->save());
