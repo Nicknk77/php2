@@ -36,15 +36,40 @@ hr {
     border: 0;
     border-top: 1px solid #555555;
 }
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
 .container {
     width: 1100px;
     margin: 0 auto;
 }
-.news {
+.news, .article {
     background-color: #eeeeee;
     border: 1px solid #444;
     margin: 10px 0;
     padding: 10px;
+}
+.article form {
+    padding: 10px;
+}
+.article input, .article textarea {
+    width: 1050px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #444;
+}
+
+.article input {
+
+}
+.article input[type="submit"] {
+    width: 200px;
+}
+.article textarea {
+    height: 400px;
 }
 .date {
     padding-bottom: 10px;
@@ -56,3 +81,44 @@ hr {
     text-align: right;
     margin: 10px 20px 10px 0;
 }
+form .delete, form .update, form .add {
+    width: 25px;
+    height: 25px;
+    margin: 5px 5px;
+    border: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+.delete {
+    background-image: url(/images/delete.png);
+
+}
+.update {
+    background-image: url(/images/update.png);
+}
+.add {
+    background-image: url(/images/add.png);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

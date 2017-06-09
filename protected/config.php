@@ -1,8 +1,13 @@
 <?php
 
-return [
-    'host' => 'localhost',
-    'dbname' => 'php2',
-    'user' => 'root',
-    'password' => ''
-];
+namespace App;
+
+class Config
+{
+    public $data = [];
+
+    public function __construct()
+    {
+        $this->data = require __DIR__ . '/config.txt';
+    }
+}
