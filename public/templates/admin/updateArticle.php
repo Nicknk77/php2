@@ -10,7 +10,7 @@
 <div class="container">
     <div class="article">
         <h4>Редактировать статью</h4>
-        <form action="/admin/edit.php" method="post">
+        <form action="/admin/update.php" method="post">
             Автор:
             <input type="text" name="author" value="<?php echo $article->author; ?>">
             Заголовок:

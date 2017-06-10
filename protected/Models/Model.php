@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use App\Db;
+
 abstract class Model
 {
     protected static $table = null;
 
     public $id;
 
-    public static function findAll()
+    public static function findAll(): array
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
 
-        $db = new \App\Db();
+        $db = new Db();
         $data = $db->query($sql, static::class);
         if (empty($data)){
             return false;
@@ -20,11 +22,11 @@ abstract class Model
         return $data;
     }
 
-    public static function findLatest(int $count)
+    public static function findLatest(int $count): array
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $count;
 
-        $db = new \App\Db();
+        $db = new Db();
         $data = $db->query($sql, static::class);
         if (empty($data)){
             return false;
@@ -39,7 +41,7 @@ abstract class Model
             ':id' => $id
         ];
 
-        $db = new \App\Db();
+        $db = new Db();
         $data = $db->query($sql, static::class, $params);
         if (empty($data)){
             return false;
@@ -60,8 +62,10 @@ abstract class Model
 
         $sql =  'INSERT INTO ' . static::$table . ' (' . implode(', ', $cols) . ') VALUES (' . ':' . implode(', :', $cols) . ')';
 
-        $db = new \App\Db();
-        return $db->execute($sql, $params);
+        $db = new Db();
+        $result = $db->execute($sql, $params);
+        $this->id = $db->lastInsertId();
+        return $result;
     }
 
     public function update(): bool
@@ -78,7 +82,7 @@ abstract class Model
 
         $sql = 'UPDATE ' . static::$table . ' SET ' . implode(', ', $binds) . ' WHERE id=:id';
 
-        $db = new \App\Db();
+        $db = new Db();
         return $db->execute($sql, $params);
     }
 
@@ -93,12 +97,12 @@ abstract class Model
     public function delete(): bool
     {
         $params = [
-            ':id' => get_object_vars($this)['id']
+            ':id' => $this->id
         ];
 
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
 
-        $db = new \App\Db();
+        $db = new Db();
         return $db->execute($sql, $params);
     }
 }

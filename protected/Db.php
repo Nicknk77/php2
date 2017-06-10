@@ -8,7 +8,8 @@ class Db
 
     public function __construct()
     {
-        $config = require __DIR__ . '/config.txt';
+        // $config = require __DIR__ . '/config.txt';
+        $config = Config::getInstance()->data;
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbname'];
         $this->dbh = new \PDO($dsn, $config['db']['user'], $config['db']['password']);
     }
@@ -23,9 +24,14 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
-    public function execute(string $sql, array $params = [])
+    public function execute(string $sql, array $params = []): bool
     {
         $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
+    }
+
+    public function lastInsertId(): int
+    {
+        return $this->dbh->lastInsertId();
     }
 }

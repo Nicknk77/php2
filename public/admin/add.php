@@ -9,8 +9,8 @@ if (isset($_POST['add']) && !empty($_POST['header']) && !empty($_POST['text'])){
     $article->date        = date('Y-m-d');
     $article->author      = trim($_POST['author']);
     $article->header      = strip_tags(trim($_POST['header']));
-    $article->textPreview = strip_tags(mb_substr(trim($_POST['text']), 0, 400) . '...');
     $article->text        = trim($_POST['text']);
+    $article->textPreview = strip_tags(mb_substr($article->text, 0, 400) . '...');
 
     $article->save();
 

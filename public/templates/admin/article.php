@@ -13,7 +13,7 @@
             <input type="hidden" name="id" value="<?php echo $article->id; ?>">
             <input type="submit" name="delete" class="delete right" value="">
         </form>
-        <form action="/admin/edit.php" method="post">
+        <form action="/admin/update.php" method="post">
             <input type="hidden" name="id" value="<?php echo $article->id; ?>">
             <input type="submit" name="update" class="update right" value="">
         </form>
