@@ -5,7 +5,7 @@ namespace App;
 trait Singleton
 {
     private static $instance = null;
-    // Делаем конструктор непубличным. Защищаем от создания через new. Конструктор отрабатывает один раз при вызове Config::getInstance();
+    // Защищаем от создания через new
     private function __construct()
     {
     }
@@ -25,9 +25,9 @@ trait Singleton
      */
     public static function getInstance()    // получаем экземпляр данного класса
     {
-        if (self::$instance === null) {     // если экземпляр данного класса  не создан
-            self::$instance = new self;     // создаем экземпляр данного класса
+        if (static::$instance === null) {     // если экземпляр данного класса  не создан
+            static::$instance = new static();     // создаем экземпляр данного класса
         }
-        return self::$instance;             // либо возвращаем экземпляр данного класса
+        return static::$instance;             // либо возвращаем экземпляр данного класса
     }
 }
