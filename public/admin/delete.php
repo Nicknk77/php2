@@ -12,3 +12,4 @@ if (isset($_POST['delete']) && !empty($_POST['id'])){
     $article->delete();
 }
 header('Location: /admin');
+die();

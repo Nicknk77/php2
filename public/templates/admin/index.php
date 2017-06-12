@@ -26,7 +26,7 @@
 
             <h4><a href="/admin/article.php?id=<?php echo $article->id; ?>"><?php echo $article->header; ?></a></h4>
             <div class="text">
-                <?php echo $article->textPreview; ?>
+                <?php echo strip_tags(mb_substr($article->text, 0, 400) . '...'); ?>
             </div>
         </div>
 

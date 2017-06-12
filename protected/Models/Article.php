@@ -10,6 +10,5 @@ class Article
     public $date;
     public $author;
     public $header;
-    public $textPreview;
     public $text;
 }

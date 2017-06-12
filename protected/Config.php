@@ -12,6 +12,6 @@ class Config
     // Делаем конструктор непубличным. Защищаем от создания через new. Конструктор отрабатывает один раз при вызове Config::getInstance();
     private function __construct()
     {
-        $this->data = require __DIR__ . '/config.txt';
+        $this->data = require __DIR__ . '/../config.php';
     }
 }
