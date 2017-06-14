@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Db;
 use App\MagicTrait;
-//use App\IteratorTrait;
 
 /*
  * Class Model
@@ -15,12 +14,10 @@ use App\MagicTrait;
  * @property int $id
  */
 abstract class Model
-    //implements \Iterator
 {
     protected static $table = null;
 
     use MagicTrait;
-    //use IteratorTrait;
 
     /*
      * Находит и возвращает все записи из БД
