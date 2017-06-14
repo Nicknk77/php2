@@ -7,5 +7,5 @@ class Author
 {
     protected static $table = 'authors';
 
-    public $name;
+    //public $name;
 }

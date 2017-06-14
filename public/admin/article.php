@@ -10,8 +10,6 @@ if (empty($_GET['id'])){
 
 $id = (int)$_GET['id'];
 
-$view = new \App\View();
+$article = Article::findById($id);
 
-$view->article = Article::findById($id);
-
-$view->display(__DIR__ . '/../templates/admin/article.php');
+include __DIR__ . '/../templates/admin/article.php';

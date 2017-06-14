@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use App\Db;
+use App\MagicTrait;
 
 abstract class Model
 {
     protected static $table = null;
 
-    public $id;
+    use MagicTrait;
 
-    public static function findAll()
+    //public $id;
 
+    public static function findAll(): array
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
 
@@ -23,7 +25,7 @@ abstract class Model
         return $data;
     }
 
-    public static function findLatest(int $count)
+    public static function findLatest(int $count): array
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $count;
 
@@ -53,7 +55,7 @@ abstract class Model
     public function insert(): bool
     {
         $data = get_object_vars($this);
-        unset($data['id'], $data['data']);
+        unset($data['id']);
         $cols = array_keys($data);
         $params = [];
 

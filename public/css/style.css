@@ -55,19 +55,14 @@ hr {
 .article form {
     padding: 10px;
 }
-.article input, .article select, .article textarea {
+.article input, .article textarea {
     width: 1050px;
     margin-bottom: 10px;
     padding: 5px;
     border: 1px solid #444;
 }
-.article input {
 
-}
-.article select {
-    width: 1060px;
-}
-.article option {
+.article input {
 
 }
 .article input[type="submit"] {

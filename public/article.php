@@ -1,7 +1,9 @@
 <?php
 require __DIR__ . '/autoload.php';
 
+use App\View;
 use App\Models\Article;
+
 
 if (empty($_GET['id'])){
     header('Location: /');
@@ -10,7 +12,7 @@ if (empty($_GET['id'])){
 
 $id = (int)$_GET['id'];
 
-$view = new \App\View();
+$view = new View();
 
 $view->article = Article::findById($id);
 

@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App;
 
-
-trait Iterator
+trait IteratorTrait
 {
     function rewind() {
         return reset($this->data);

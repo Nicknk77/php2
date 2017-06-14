@@ -2,11 +2,13 @@
 
 namespace App;
 
+
+
 class View
     implements \Iterator
 {
-    use Iterator;
     use MagicTrait;
+    use IteratorTrait;
 
     public function render(string $template)
     {
