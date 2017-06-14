@@ -9,18 +9,6 @@
 
 
 
-<?php
-
-var_dump($article->id);
-
-
-
-
-?>
-
-
-
-
 
 
 
@@ -28,10 +16,10 @@ var_dump($article->id);
 
 <div class="container">
     <div class="news">
-        <h4><?php echo $article->header; ?></h4>
-        <div class="date"><?php echo $article->date; ?></div>
-        <div class="text"><?php echo $article->text; ?></div>
-        <div class="author"><?php echo $article->author->name; ?></div>
+        <h4><?php echo $this->article->header; ?></h4>
+        <div class="date"><?php echo $this->article->date; ?></div>
+        <div class="text"><?php echo $this->article->text; ?></div>
+        <div class="author"><?php echo $this->article->author->name; ?></div>
     </div>
 </div>
 

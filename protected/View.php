@@ -5,16 +5,18 @@ namespace App;
 
 
 class View
-    implements \Iterator
+    //implements \Iterator
 {
+    //use IteratorTrait;
     use MagicTrait;
-    use IteratorTrait;
+
+
 
     public function render(string $template)
     {
-        foreach ($this as $name => $value) {
-            $$name = $value;
-        }
+        //foreach ($this as $name => $value) {
+        //    $$name = $value;
+        //}
         ob_start();
         include $template;
         $content = ob_get_contents();

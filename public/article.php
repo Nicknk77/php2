@@ -16,4 +16,6 @@ $view = new View();
 
 $view->article = Article::findById($id);
 
+var_dump($view);
+
 $view->display(__DIR__ . '/templates/article.php');

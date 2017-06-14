@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use App\Db;
+//use App\IteratorTrait;
 use App\MagicTrait;
 
+
 abstract class Model
+    //implements \Iterator
 {
     protected static $table = null;
 
-    use MagicTrait;
+    //use MagicTrait;
+    //use IteratorTrait;
 
     //public $id;
 
