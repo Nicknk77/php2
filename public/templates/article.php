@@ -12,7 +12,15 @@
         <h4><?php echo $article->header; ?></h4>
         <div class="date"><?php echo $article->date; ?></div>
         <div class="text"><?php echo $article->text; ?></div>
-        <div class="author"><?php echo $article->author; ?></div>
+        <div class="author">
+
+            <?php
+            if (null !== $article->author){
+                echo $article->author->name;
+            }
+            ?>
+
+        </div>
     </div>
 </div>
 

@@ -10,7 +10,8 @@ abstract class Model
 
     public $id;
 
-    public static function findAll(): array
+    public static function findAll()
+
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
 
@@ -22,7 +23,7 @@ abstract class Model
         return $data;
     }
 
-    public static function findLatest(int $count): array
+    public static function findLatest(int $count)
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $count;
 
@@ -52,7 +53,7 @@ abstract class Model
     public function insert(): bool
     {
         $data = get_object_vars($this);
-        unset($data['id']);
+        unset($data['id'], $data['data']);
         $cols = array_keys($data);
         $params = [];
 

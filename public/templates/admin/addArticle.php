@@ -10,9 +10,22 @@
 <div class="container">
     <div class="article">
         <h4>Добавить статью</h4>
+
+
         <form action="/admin/add.php" method="post">
             Автор:
-            <input type="text" name="author">
+            <select name="author_id" id="">
+                <option value=""></option>
+
+                <?php
+
+                foreach ($authors as $author): ?>
+
+                    <option value="<?php echo $author->id; ?>" ><?php echo $author->name; ?></option>
+
+                <?php endforeach; ?>
+
+            </select>
             Заголовок:
             <input type="text" name="header" required>
             Текст:

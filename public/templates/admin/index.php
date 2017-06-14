@@ -18,6 +18,7 @@
             </form>
             <form action="/admin/update.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $article->id; ?>">
+                <input type="hidden" name="author_id" value="<?php echo $article->author_id; ?>">
                 <input type="submit" name="update" class="update right" value="">
             </form>
             <form action="/admin/add.php" method="post">
