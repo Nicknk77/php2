@@ -1,8 +1,11 @@
 <?php
 require __DIR__ . '/autoload.php';
 
+use App\View;
 use App\Models\Article;
 
-$news = Article::findLatest(3);
+$view = new View();
 
-include __DIR__ . '/templates/index.php';
+$view->news = Article::findLatest(3);
+
+$view->display(__DIR__ . '/templates/index.php');

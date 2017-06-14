@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+/*
+ * Class Author
+ * Модель автора
+ *
+ * @package App\Models
+ *
+ * @property string $name
+ */
 class Author
     extends Model
 {
     protected static $table = 'authors';
-
-    public $name;
 }

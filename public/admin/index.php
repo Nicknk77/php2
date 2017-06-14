@@ -1,8 +1,11 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
+use App\View;
 use App\Models\Article;
 
-$news = Article::findAll();
+$view = new View();
 
-include __DIR__ . '/../templates/admin/index.php';
+$view->news = Article::findAll();
+
+$view->display(__DIR__ . '/../templates/admin/index.php');

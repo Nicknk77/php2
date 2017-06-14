@@ -7,9 +7,13 @@
 </head>
 <body>
 
+<div class="menu">
+    <div class="right"><a href="/admin">Администрирование</a></div>
+    <div class="left"><a href="/">Главная</a></div>
+</div>
 <div class="container">
 
-    <?php foreach ($news as $article): ?>
+    <?php foreach ($this->news as $article): ?>
 
         <div class="news">
             <h4><a href="/article.php?id=<?php echo $article->id; ?>"><?php echo $article->header; ?></a></h4>

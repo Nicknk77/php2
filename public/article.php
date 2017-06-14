@@ -4,7 +4,6 @@ require __DIR__ . '/autoload.php';
 use App\View;
 use App\Models\Article;
 
-
 if (empty($_GET['id'])){
     header('Location: /');
     die();
@@ -15,7 +14,5 @@ $id = (int)$_GET['id'];
 $view = new View();
 
 $view->article = Article::findById($id);
-
-var_dump($view);
 
 $view->display(__DIR__ . '/templates/article.php');

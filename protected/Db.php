@@ -2,6 +2,12 @@
 
 namespace App;
 
+/*
+ * Class Db
+ * Класс базы данных
+ *
+ * @package App
+ */
 class Db
 {
     protected $dbh;
@@ -14,6 +20,14 @@ class Db
         $this->dbh = new \PDO($dsn, $config['db']['user'], $config['db']['password']);
     }
 
+    /*
+     * Выполняет запрос
+     *
+     * @param string $sql
+     * @param string $class
+     * @param array $params
+     * @return mixed
+     */
     public function query(string $sql, string $class, array $params = [])
     {
         $sth = $this->dbh->prepare($sql);
@@ -24,12 +38,24 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
+    /*
+     * Выполняет запрос
+     *
+     * @param string $sql
+     * @param array $params
+     * @return bool
+     */
     public function execute(string $sql, array $params = []): bool
     {
         $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
     }
 
+    /*
+     * Возвращает последний вставленный в БД id
+     *
+     * @return int
+     */
     public function lastInsertId(): int
     {
         return $this->dbh->lastInsertId();

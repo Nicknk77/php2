@@ -9,10 +9,22 @@
 
 <div class="container">
     <div class="article">
+
         <h4>Редактировать статью</h4>
         <form action="/admin/update.php" method="post">
             Автор:
-            <input type="text" name="author" value="<?php echo $article->author; ?>">
+            <select name="author_id">
+                <option value=""></option>
+
+                <?php foreach ($authors as $author): ?>
+
+                <option value="<?php echo $author->id; ?>" <?php if ($author->id == $article->author_id){?> selected<?php } ?>>
+                    <?php echo $author->name; ?>
+                </option>
+
+                <?php endforeach; ?>
+
+            </select>
             Заголовок:
             <input type="text" name="header" value="<?php echo $article->header; ?>" required>
             Текст:

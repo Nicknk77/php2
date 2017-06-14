@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
+use App\View;
 use App\Models\Article;
 
 if (empty($_GET['id'])){
@@ -10,6 +11,8 @@ if (empty($_GET['id'])){
 
 $id = (int)$_GET['id'];
 
-$article = Article::findById($id);
+$view = new View();
 
-include __DIR__ . '/../templates/admin/article.php';
+$view->article = Article::findById($id);
+
+$view->display(__DIR__ . '/../templates/admin/article.php');

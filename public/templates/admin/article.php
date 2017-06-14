@@ -7,14 +7,18 @@
 </head>
 <body>
 
+<div class="menu">
+    <div class="right"><a href="/admin">Администрирование</a></div>
+    <div class="left"><a href="/">Главная</a></div>
+</div>
 <div class="container">
     <div class="news">
         <form action="/admin/delete.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $article->id; ?>">
+            <input type="hidden" name="id" value="<?php echo $this->article->id; ?>">
             <input type="submit" name="delete" class="delete right" value="">
         </form>
         <form action="/admin/update.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $article->id; ?>">
+            <input type="hidden" name="id" value="<?php echo $this->article->id; ?>">
             <input type="submit" name="update" class="update right" value="">
         </form>
         <form action="/admin/add.php" method="post">
@@ -24,7 +28,15 @@
         <h4><?php echo $article->header; ?></h4>
         <div class="date"><?php echo $article->date; ?></div>
         <div class="text"><?php echo $article->text; ?></div>
-        <div class="author"><?php echo $article->author; ?></div>
+        <div class="author">
+
+            <?php
+            if (null !== $article->author_id){
+                echo $article->author->name;
+            } else {}
+            ?>
+
+        </div>
     </div>
 </div>
 

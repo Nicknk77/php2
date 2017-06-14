@@ -42,9 +42,12 @@ hr {
 .right {
     float: right;
 }
-.container {
+.container, .menu {
     width: 1100px;
     margin: 0 auto;
+}
+.menu {
+    height: 20px;
 }
 .news, .article {
     background-color: #eeeeee;
@@ -55,14 +58,20 @@ hr {
 .article form {
     padding: 10px;
 }
-.article input, .article textarea {
+.article input, .article select, .article textarea {
     width: 1050px;
     margin-bottom: 10px;
     padding: 5px;
     border: 1px solid #444;
+    background-color: #fff;
 }
-
 .article input {
+
+}
+.article select {
+    width: 1060px;
+}
+.article option {
 
 }
 .article input[type="submit"] {
@@ -99,26 +108,3 @@ form .delete, form .update, form .add {
 .add {
     background-image: url(/images/add.png);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
