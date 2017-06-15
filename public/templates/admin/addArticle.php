@@ -15,7 +15,7 @@
             <select name="author_id">
                 <option value=""></option>
 
-                <?php foreach ($authors as $author): ?>
+                <?php foreach ($this->authors as $author): ?>
 
                     <option value="<?php echo $author->id; ?>"><?php echo $author->name; ?></option>
 

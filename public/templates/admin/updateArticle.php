@@ -9,16 +9,15 @@
 
 <div class="container">
     <div class="article">
-
         <h4>Редактировать статью</h4>
         <form action="/admin/update.php" method="post">
             Автор:
             <select name="author_id">
                 <option value=""></option>
 
-                <?php foreach ($authors as $author): ?>
+                <?php foreach ($this->authors as $author): ?>
 
-                <option value="<?php echo $author->id; ?>" <?php if ($author->id == $article->author_id){?> selected<?php } ?>>
+                <option value="<?php echo $author->id; ?>" <?php if ($author->id == $this->article->author_id){?> selected<?php } ?>>
                     <?php echo $author->name; ?>
                 </option>
 
@@ -26,10 +25,10 @@
 
             </select>
             Заголовок:
-            <input type="text" name="header" value="<?php echo $article->header; ?>" required>
+            <input type="text" name="header" value="<?php echo $this->article->header; ?>" required>
             Текст:
-            <textarea name="text" required><?php echo $article->text; ?></textarea>
-            <input type="hidden" name="id" value="<?php echo $article->id; ?>">
+            <textarea name="text" required><?php echo $this->article->text; ?></textarea>
+            <input type="hidden" name="id" value="<?php echo $this->article->id; ?>">
             <input type="submit" name="edit" value="Отправить">
         </form>
     </div>

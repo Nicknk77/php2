@@ -23,7 +23,7 @@ class Article
     public function __get($name)
     {
         if ($name === 'author' && null !== $this->author_id){
-            $this->data['author'] = Author::findById($this->author_id);
+            return Author::findById($this->author_id);
         }
         return $this->data[$name];
     }

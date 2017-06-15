@@ -9,6 +9,8 @@ namespace App;
  */
 trait IteratorTrait
 {
+    protected $data = [];
+
     /*
      * Возвращает значение на который указывает внутренний указатель
      *

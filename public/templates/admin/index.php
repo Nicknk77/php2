@@ -13,7 +13,7 @@
 </div>
 <div class="container">
 
-    <?php foreach ($news as $article): ?>
+    <?php foreach ($this->news as $article): ?>
 
         <div class="news">
             <form action="/admin/delete.php" method="post">

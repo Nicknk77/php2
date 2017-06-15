@@ -25,14 +25,14 @@
             <input type="submit" name="add" class="add right" value="">
         </form>
 
-        <h4><?php echo $article->header; ?></h4>
-        <div class="date"><?php echo $article->date; ?></div>
-        <div class="text"><?php echo $article->text; ?></div>
+        <h4><?php echo $this->article->header; ?></h4>
+        <div class="date"><?php echo $this->article->date; ?></div>
+        <div class="text"><?php echo $this->article->text; ?></div>
         <div class="author">
 
             <?php
-            if (null !== $article->author_id){
-                echo $article->author->name;
+            if (null !== $this->article->author_id){
+                echo $this->article->author->name;
             } else {}
             ?>
 
