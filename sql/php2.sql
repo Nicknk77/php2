@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 14 2017 г., 21:09
+-- Время создания: Июн 17 2017 г., 22:02
 -- Версия сервера: 5.7.16
 -- Версия PHP: 7.1.0
 
@@ -99,7 +99,7 @@ ALTER TABLE `authors`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
