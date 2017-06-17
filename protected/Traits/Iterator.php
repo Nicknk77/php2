@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Traits;
 
 /*
- * trait IteratorTrait
+ * trait Iterator
+ * Реализует интерфейс Iterator
  *
- * @package App
+ * @package App\Traits
  */
-trait IteratorTrait
+trait Iterator
 {
     protected $data = [];
 

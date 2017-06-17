@@ -7,10 +7,14 @@
 </head>
 <body>
 
+<div class="menu">
+    <div class="right"><a href="/admin/news">Администрирование</a></div>
+    <div class="left"><a href="/news">Главная</a></div>
+</div>
 <div class="container">
     <div class="article">
         <h4>Добавить статью</h4>
-        <form action="/admin/add.php" method="post">
+        <form action="/admin/news/add" method="post">
             Автор:
             <select name="author_id">
                 <option value=""></option>

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Db;
-use App\MagicTrait;
+use App\Traits\Magic;
 
 /*
  * Class Model
@@ -17,7 +17,7 @@ abstract class Model
 {
     protected static $table = null;
 
-    use MagicTrait;
+    use Magic;
 
     /*
      * Находит и возвращает все записи из БД

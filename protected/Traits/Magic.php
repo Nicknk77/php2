@@ -1,14 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Traits;
 
 /*
- * Trait MagicTrait
+ * trait Magic
  * Реализует магические методы __set(), __get() и __isset()
  *
- * @package App
+ * @package App\Traits
  */
-trait MagicTrait
+trait Magic
 {
     protected $data = [];
 

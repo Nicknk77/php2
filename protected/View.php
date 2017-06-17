@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\Traits\Magic;
+use App\Traits\Iterator;
+use App\Traits\Count;
+use App\Traits\ArrayAccess;
+
 /*
  * Class View
  * Класс представления
@@ -9,10 +14,12 @@ namespace App;
  * @package App
  */
 class View
-    implements \Iterator, \Countable
+    implements \Iterator, \Countable, \ArrayAccess
 {
-    use IteratorTrait;
-    use MagicTrait;
+    use Magic;
+    use Iterator;
+    use Count;
+    use ArrayAccess;
 
     /*
      * Возвращает строку - HTML-код шаблона
@@ -42,15 +49,5 @@ class View
     public function display(string $template)
     {
         echo $this->render($template);
-    }
-
-    /*
-     * Возвращает количество элементов
-     *
-     * @return int
-     */
-    public function count(): int
-    {
-        return count($this->data);
     }
 }

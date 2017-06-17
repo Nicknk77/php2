@@ -8,15 +8,15 @@
 <body>
 
 <div class="menu">
-    <div class="right"><a href="/admin">Администрирование</a></div>
-    <div class="left"><a href="/">Главная</a></div>
+    <div class="right"><a href="/admin/news">Администрирование</a></div>
+    <div class="left"><a href="/news">Главная</a></div>
 </div>
 <div class="container">
 
     <?php foreach ($this->news as $article): ?>
 
         <div class="news">
-            <h4><a href="/article.php?id=<?php echo $article->id; ?>"><?php echo $article->header; ?></a></h4>
+            <h4><a href="/news/one/?id=<?php echo $article->id; ?>"><?php echo $article->header; ?></a></h4>
             <div class="text">
                 <?php echo strip_tags(mb_substr($article->text, 0, 400) . '...'); ?>
             </div>

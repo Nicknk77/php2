@@ -90,10 +90,11 @@ hr {
     text-align: right;
     margin: 10px 20px 10px 0;
 }
-form .delete, form .update, form .add {
+div .delete, div .update, div .add {
     width: 25px;
     height: 25px;
     margin: 5px 5px;
+    display: block;
     border: none;
     cursor: pointer;
     background-repeat: no-repeat;

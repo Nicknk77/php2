@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Traits;
 
 /*
- * Trait Singleton
+ * trait Singleton
  * Реализует паттерн Singleton
  *
- * @package App
+ * @package App\Traits
  */
 trait Singleton
 {

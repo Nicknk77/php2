@@ -21,7 +21,7 @@ class Db
     }
 
     /*
-     * Выполняет запрос
+     * Выполняет запрос к БД
      *
      * @param string $sql
      * @param string $class
@@ -39,7 +39,7 @@ class Db
     }
 
     /*
-     * Выполняет запрос
+     * Выполняет запрос к БД
      *
      * @param string $sql
      * @param array $params

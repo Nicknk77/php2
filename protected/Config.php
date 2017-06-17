@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Traits\Singleton;
+
 /*
  * Class Config
  * Хранит конфигурацию подключения к БД

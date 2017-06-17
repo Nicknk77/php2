@@ -8,8 +8,8 @@
 <body>
 
 <div class="menu">
-    <div class="right"><a href="/admin">Администрирование</a></div>
-    <div class="left"><a href="/">Главная</a></div>
+    <div class="right"><a href="/admin/news">Администрирование</a></div>
+    <div class="left"><a href="/news">Главная</a></div>
 </div>
 <div class="container">
     <div class="news">
@@ -21,7 +21,7 @@
             <?php
             if (null !== $this->article->author_id){
                 echo $this->article->author->name;
-            } else {}
+            }
             ?>
 
         </div>
