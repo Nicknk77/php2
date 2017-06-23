@@ -49,4 +49,11 @@ abstract class Controller
             die('Доступ запрещен!');
         }
     }
+
+    public function isNew() {
+        if (empty($_GET['id'])) {
+            return true;
+        }
+        return false;
+    }
 }

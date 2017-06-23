@@ -36,44 +36,34 @@ class News
     }
 
     /*
-     * Метод actionAdd
-     * Добавляет новость в БД или выводит форму добавления новости
+     * Метод actionEdit
+     * Выводит форму редактирования статьи
      */
-    protected function actionAdd()
+    protected function actionEdit()
     {
-        if (isset($_POST['add']) && !empty($_POST['header']) && !empty($_POST['text'])){
-            $article = new Article();
-
-            $article->date   = date('Y-m-d');
-            $article->header = strip_tags(trim($_POST['header']));
-            $article->text   = trim($_POST['text']);
-
-            if (!empty($_POST['author_id'])){
-                $article->author_id = (int)($_POST['author_id']);
-            } else {
-                $article->author_id = null;
-            }
-
-            if (true === $article->save()) {
-                header('Location: /admin/news/one/?id=' . $article->id);
-                die();
-            }
+        if (false === $this->isNew()) {
+            $id = (int)$_GET['id'];
+            $this->view->article = Article::findById($id);
         }
         $this->view->authors = Author::findAll();
-        $this->view->display(__DIR__ . '/../../../templates/admin/addArticle.php');
+        $this->view->display(__DIR__ . '/../../../templates/admin/editArticle.php');
     }
 
     /*
-     * Метод actionUpdate
-     * Обновляет запись новости в БД или выводит форму редактирования новости
+     * Метод actionSave
+     * Сохраняет статью в БД
      */
-    protected function actionUpdate()
+    protected function actionSave()
     {
-        if (isset($_POST['update']) && !empty($_POST['id']) && !empty($_POST['header']) && !empty($_POST['text'])){
-            $id = (int)$_POST['id'];
-            $article = Article::findById($id);
+        if (isset($_POST['edit']) && !empty($_POST['header']) && !empty($_POST['text'])){
+            if (!empty($_POST['id'])) {
+                $id = (int)$_POST['id'];
+                $article = Article::findById($id);
+                $article->id = $id;
+            } else {
+                $article = new Article();
+            }
 
-            $article->id     = $id;
             $article->date   = date('Y-m-d');
             $article->header = strip_tags(trim($_POST['header']));
             $article->text   = trim($_POST['text']);
@@ -85,20 +75,9 @@ class News
             }
 
             if (true === $article->save()) {
-                header('Location: /admin/news/one/?id=' . $id);
+                header('Location: /admin/news/');
                 die();
             }
-        }
-
-        if (!empty($_GET['id'])) {
-            $id = (int)$_GET['id'];
-
-            $this->view->article = Article::findById($id);
-            $this->view->authors = Author::findAll();
-            $this->view->display(__DIR__ . '/../../../templates/admin/updateArticle.php');
-        } else {
-            header('Location: /admin/news');
-            die();
         }
     }
 
