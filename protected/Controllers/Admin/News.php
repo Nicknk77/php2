@@ -34,11 +34,13 @@ class News
     protected function actionOne()
     {
         $news = $this->view->article = Article::findById($_GET['id']);
+
         if (empty($news)) {
             $error = new NotFoundException('Новость не найдена!');
             Logger::getInstance()->log($error);
             throw $error;
         }
+
         $this->view->display(__DIR__ . '/../../../templates/admin/article.php');
     }
 
@@ -51,6 +53,7 @@ class News
         if (false === $this->isNew()) {
             $id = (int)$_GET['id'];
             $this->view->article = Article::findById($id);
+
             if (empty($this->view->article)) {
                 $error = new NotFoundException('Новость не найдена!');
                 Logger::getInstance()->log($error);
@@ -71,11 +74,13 @@ class News
             if (!empty($_POST['id'])) {
                 $id = (int)$_POST['id'];
                 $article = Article::findById($id);
+
                 if (empty($article)) {
                     $error = new NotFoundException('Новость не найдена!');
                     Logger::getInstance()->log($error);
                     throw $error;
                 }
+
                 $article->id = $id;
             } else {
                 $article = new Article();
@@ -110,6 +115,7 @@ class News
             Logger::getInstance()->log($error);
             throw $error;
         }
+
         if (true === $this->view->article->delete()) {
             header('Location: /admin/news');
             die();
