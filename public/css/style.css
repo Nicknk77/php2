@@ -36,6 +36,9 @@ hr {
     border: 0;
     border-top: 1px solid #555555;
 }
+.block {
+    display: block;
+}
 .left {
     float: left;
 }
@@ -108,4 +111,23 @@ div .delete, div .update, div .add {
 }
 .add {
     background-image: url(/images/add.png);
+}
+div .error403, div .error404, div .errorDb {
+    height: 512px;
+    background-color: #eeeeee;
+    border: 1px solid #444;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.error403 h4, .error404 h4, .errorDb h4 {
+    margin: 100px 0 0 30px;
+}
+.error403 {
+    background-image: url(/images/403.png);
+}
+.error404 {
+    background-image: url(/images/404.png);
+}
+.errorDb {
+    background-image: url(/images/500.png);
 }

@@ -2,9 +2,11 @@
 
 namespace App\Controllers\Admin;
 
+use App\Logger;
 use App\Controller;
 use App\Models\Article;
 use App\Models\Author;
+use App\Exceptions\NotFoundException;
 
 /*
  * Class Admin\News
@@ -31,7 +33,12 @@ class News
      */
     protected function actionOne()
     {
-        $this->view->article = Article::findById($_GET['id']);
+        $news = $this->view->article = Article::findById($_GET['id']);
+        if (empty($news)) {
+            $error = new NotFoundException('Новость не найдена!');
+            Logger::getInstance()->log($error);
+            throw $error;
+        }
         $this->view->display(__DIR__ . '/../../../templates/admin/article.php');
     }
 
@@ -44,6 +51,11 @@ class News
         if (false === $this->isNew()) {
             $id = (int)$_GET['id'];
             $this->view->article = Article::findById($id);
+            if (empty($this->view->article)) {
+                $error = new NotFoundException('Новость не найдена!');
+                Logger::getInstance()->log($error);
+                throw $error;
+            }
         }
         $this->view->authors = Author::findAll();
         $this->view->display(__DIR__ . '/../../../templates/admin/editArticle.php');
@@ -59,6 +71,11 @@ class News
             if (!empty($_POST['id'])) {
                 $id = (int)$_POST['id'];
                 $article = Article::findById($id);
+                if (empty($article)) {
+                    $error = new NotFoundException('Новость не найдена!');
+                    Logger::getInstance()->log($error);
+                    throw $error;
+                }
                 $article->id = $id;
             } else {
                 $article = new Article();
@@ -88,6 +105,11 @@ class News
     protected function actionDelete()
     {
         $this->view->article = Article::findById($_GET['id'] ?? null);
+        if (empty($this->view->article)) {
+            $error = new NotFoundException('Новость не найдена!');
+            Logger::getInstance()->log($error);
+            throw $error;
+        }
         if (true === $this->view->article->delete()) {
             header('Location: /admin/news');
             die();

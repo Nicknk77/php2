@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\NotFoundException;
+
 /*
  * Class Controller
  * Класс контроллера
@@ -40,16 +42,21 @@ abstract class Controller
             if (method_exists($this, $methodName)) {
                 $this->$methodName();
             } else {
-                http_response_code(404);
-                die('Метод не найден!');
+                $error = new NotFoundException('Метод не найден!');
+                Logger::getInstance()->log($error);
+                throw $error;
             }
-
         } else {
-            http_response_code(403);
+            header('HTTP/1.1 403 Forbidden', 403);
             die('Доступ запрещен!');
         }
     }
 
+    /*
+     * Проверяет добавляется новый элемент или редактируется существующий
+     *
+     * @return bool
+     */
     public function isNew() {
         if (empty($_GET['id'])) {
             return true;

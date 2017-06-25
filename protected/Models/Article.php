@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Logger;
+use App\Exceptions\NotFoundException;
+
 /*
  * Class Article
  * Модель статьи
@@ -23,7 +26,13 @@ class Article
     public function __get($name)
     {
         if ($name === 'author' && null !== $this->author_id){
-            return Author::findById($this->author_id);
+            $author = Author::findById($this->author_id);
+            if (empty($author)) {
+                $error = new NotFoundException('Автор не найден!');
+                Logger::getInstance()->log($error);
+                throw $error;
+            }
+            return $author;
         }
         return $this->data[$name];
     }

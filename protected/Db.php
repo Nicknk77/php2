@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\DbException;
+
 /*
  * Class Db
  * Класс базы данных
@@ -17,7 +19,13 @@ class Db
         // $config = require __DIR__ . '/config.php';
         $config = Config::getInstance()->data;
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbname'];
-        $this->dbh = new \PDO($dsn, $config['db']['user'], $config['db']['password']);
+        try {
+            $this->dbh = new \PDO($dsn, $config['db']['user'], $config['db']['password']);
+        } catch (\PDOException $e) {
+            $error = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->log($error);
+            throw $error;
+        }
     }
 
     /*
@@ -30,12 +38,15 @@ class Db
      */
     public function query(string $sql, string $class, array $params = [])
     {
-        $sth = $this->dbh->prepare($sql);
-        $result = $sth->execute($params);
-        if (false === $result){
-            return false;
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute($params);
+            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        } catch (\PDOException $e) {
+            $error = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->log($error);
+            throw $error;
         }
-        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
     /*
@@ -47,8 +58,14 @@ class Db
      */
     public function execute(string $sql, array $params = []): bool
     {
-        $sth = $this->dbh->prepare($sql);
-        return $sth->execute($params);
+        try {
+            $sth = $this->dbh->prepare($sql);
+            return $sth->execute($params);
+        } catch (\PDOException $e) {
+            $error = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->log($error);
+            throw $error;
+        }
     }
 
     /*

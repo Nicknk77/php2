@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Logger;
 use App\Controller;
 use App\Models\Article;
+use App\Exceptions\NotFoundException;
 
 /*
  * Class News
@@ -40,7 +42,12 @@ class News
      */
     protected function actionOne()
     {
-        $this->view->article = Article::findById($_GET['id'] ?? null);
+        $news = $this->view->article = Article::findById($_GET['id']);
+        if (empty($news)) {
+            $error = new NotFoundException('Новость не найдена!');
+            Logger::getInstance()->log($error);
+            throw $error;
+        }
         $this->view->display(__DIR__ . '/../../templates/article.php');
     }
 }

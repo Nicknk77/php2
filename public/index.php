@@ -1,6 +1,10 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
+use App\Controllers\Errors;
+use App\Exceptions\DbException;
+use App\Exceptions\NotFoundException;
+
 // получаем REQUEST_URI
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -17,15 +21,39 @@ if ($parts[1] === 'Admin'){
 
     $controllerClass = '\\App\\Controllers\\Admin\\' . (!empty($parts[2]) ? $parts[2] : 'News');
 
+    if (!class_exists($controllerClass)) {
+        $controller = new Errors();
+        $controller->action('403');
+    }
+
     $actionName = (!empty($parts[3]) ? $parts[3] : 'All');
 
 } else {
 
     $controllerClass = '\\App\\Controllers\\' . (!empty($parts[1]) ? $parts[1] : 'News');
 
+    if (!class_exists($controllerClass)) {
+        $controller = new Errors();
+        $controller->action('403');
+    }
+
     $actionName = (!empty($parts[2]) ? $parts[2] : 'Default');
 }
 
 $controller = new $controllerClass;
 
-$controller->action($actionName);
+try {
+
+    $controller->action($actionName);
+
+} catch (DbException $e) {
+
+    $controller = new Errors();
+    $controller->action('500');
+
+} catch (NotFoundException $e) {
+
+    $controller = new Errors();
+    $controller->action('404');
+
+}

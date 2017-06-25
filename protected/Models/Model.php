@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Db;
 use App\Traits\Magic;
+use App\Exceptions\MultiExceptions;
 
 /*
  * Class Model
@@ -71,7 +72,7 @@ abstract class Model
         $db = new Db();
         $data = $db->query($sql, static::class, $params);
         if (empty($data)){
-            return false;
+            return null;
         }
         return array_shift($data);
     }
@@ -145,5 +146,27 @@ abstract class Model
 
         $db = new Db();
         return $db->execute($sql, $params);
+    }
+
+    /*
+     * Заполняет свойства модели данными из массива
+     *
+     * @param array $data
+     */
+    public function fill(array $data)
+    {
+        $errors = new MultiExceptions();
+
+        foreach ($data as $key => $value) {
+            try {
+                $this->$key = $value;
+            } catch(\Exception $e) {
+                $errors->add($e);
+            }
+        }
+
+        if (!$errors->empty()) {
+            throw $errors;
+        }
     }
 }
