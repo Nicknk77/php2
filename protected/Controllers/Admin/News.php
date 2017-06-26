@@ -121,4 +121,16 @@ class News
             die();
         }
     }
+
+    /*
+     * Проверяет добавляется новый элемент или редактируется существующий
+     *
+     * @return bool
+     */
+    public function isNew() {
+        if (empty($_GET['id'])) {
+            return true;
+        }
+        return false;
+    }
 }
