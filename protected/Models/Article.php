@@ -28,9 +28,9 @@ class Article
         if ($name === 'author' && null !== $this->author_id){
             $author = Author::findById($this->author_id);
             if (empty($author)) {
-                $error = new NotFoundException('Автор не найден!');
-                Logger::getInstance()->log($error);
-                throw $error;
+                $exc = new NotFoundException('Автор не найден!');
+                Logger::getInstance()->error($exc);
+                throw $exc;
             }
             return $author;
         }

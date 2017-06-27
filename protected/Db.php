@@ -22,9 +22,9 @@ class Db
         try {
             $this->dbh = new \PDO($dsn, $config['db']['user'], $config['db']['password']);
         } catch (\PDOException $e) {
-            $error = new DbException($e->getMessage(), $e->getCode());
-            Logger::getInstance()->log($error);
-            throw $error;
+            $exc = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->emergency($exc);
+            throw $exc;
         }
     }
 
@@ -43,9 +43,9 @@ class Db
             $sth->execute($params);
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         } catch (\PDOException $e) {
-            $error = new DbException($e->getMessage(), $e->getCode());
-            Logger::getInstance()->log($error);
-            throw $error;
+            $exc = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->error($exc);
+            throw $exc;
         }
     }
 
@@ -62,9 +62,9 @@ class Db
             $sth = $this->dbh->prepare($sql);
             return $sth->execute($params);
         } catch (\PDOException $e) {
-            $error = new DbException($e->getMessage(), $e->getCode());
-            Logger::getInstance()->log($error);
-            throw $error;
+            $exc = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->error($exc);
+            throw $exc;
         }
     }
 

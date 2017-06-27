@@ -36,9 +36,9 @@ class News
         $news = $this->view->article = Article::findById($_GET['id']);
 
         if (empty($news)) {
-            $error = new NotFoundException('Новость не найдена!');
-            Logger::getInstance()->log($error);
-            throw $error;
+            $exc = new NotFoundException('Новость не найдена!');
+            Logger::getInstance()->error($exc);
+            throw $exc;
         }
 
         $this->view->display(__DIR__ . '/../../../templates/admin/article.php');
@@ -55,9 +55,9 @@ class News
             $this->view->article = Article::findById($id);
 
             if (empty($this->view->article)) {
-                $error = new NotFoundException('Новость не найдена!');
-                Logger::getInstance()->log($error);
-                throw $error;
+                $exc = new NotFoundException('Новость не найдена!');
+                Logger::getInstance()->error($exc);
+                throw $exc;
             }
         }
         $this->view->authors = Author::findAll();
@@ -76,9 +76,9 @@ class News
                 $article = Article::findById($id);
 
                 if (empty($article)) {
-                    $error = new NotFoundException('Новость не найдена!');
-                    Logger::getInstance()->log($error);
-                    throw $error;
+                    $exc = new NotFoundException('Новость не найдена!');
+                    Logger::getInstance()->error($exc);
+                    throw $exc;
                 }
 
                 $article->id = $id;
@@ -111,9 +111,9 @@ class News
     {
         $this->view->article = Article::findById($_GET['id'] ?? null);
         if (empty($this->view->article)) {
-            $error = new NotFoundException('Новость не найдена!');
-            Logger::getInstance()->log($error);
-            throw $error;
+            $exc = new NotFoundException('Новость не найдена!');
+            Logger::getInstance()->error($exc);
+            throw $exc;
         }
 
         if (true === $this->view->article->delete()) {

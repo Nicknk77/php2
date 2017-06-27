@@ -44,9 +44,9 @@ class News
     {
         $news = $this->view->article = Article::findById($_GET['id']);
         if (empty($news)) {
-            $error = new NotFoundException('Новость не найдена!');
-            Logger::getInstance()->log($error);
-            throw $error;
+            $exc = new NotFoundException('Новость не найдена!');
+            Logger::getInstance()->error($exc);
+            throw $exc;
         }
         $this->view->display(__DIR__ . '/../../templates/article.php');
     }

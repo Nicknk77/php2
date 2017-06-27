@@ -42,9 +42,9 @@ abstract class Controller
             if (method_exists($this, $methodName)) {
                 $this->$methodName();
             } else {
-                $error = new NotFoundException('Метод не найден!');
-                Logger::getInstance()->log($error);
-                throw $error;
+                $exc = new NotFoundException('Метод не найден!');
+                Logger::getInstance()->error($exc);
+                throw $exc;
             }
         } else {
             header('HTTP/1.1 403 Forbidden', 403);
