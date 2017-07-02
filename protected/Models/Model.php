@@ -25,12 +25,29 @@ abstract class Model
      *
      * @return mixed
      */
-    public static function findAll(): array
+    public static function findAll()
     {
         $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
 
         $db = new Db();
         $data = $db->query($sql, static::class);
+        if (empty($data)){
+            return false;
+        }
+        return $data;
+    }
+
+    /*
+     * Находит и возвращает все записи из БД по-строчно
+     *
+     * @return mixed
+     */
+    public static function findAllLines()
+    {
+        $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
+
+        $db = new Db();
+        $data = $db->queryEach($sql, static::class);
         if (empty($data)){
             return false;
         }
@@ -126,7 +143,7 @@ abstract class Model
      */
     public function save(): bool
     {
-        if (empty($this->id)){
+        if (true === $this->isNew()){
             return $this->insert();
         }
         return $this->update();
@@ -149,6 +166,15 @@ abstract class Model
     }
 
     /*
+ * Проверяет добавляется новый элемент или редактируется существующий
+ *
+ * @return bool
+ */
+    public function isNew() {
+        return empty($this->id);
+    }
+
+    /*
      * Заполняет свойства модели данными из массива
      *
      * @param array $data
@@ -168,5 +194,7 @@ abstract class Model
         if (!$errors->empty()) {
             throw $errors;
         }
+
+        return $this;
     }
 }

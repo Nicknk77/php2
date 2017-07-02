@@ -48,6 +48,31 @@ class Db
             throw $exc;
         }
     }
+    /*
+     * Выполняет запрос к БД. Генерирует запись за записью из ответа сервера базы данных, не делая fetchAll(), а построчно исполняя fetch()
+     *
+     * @param string $sql
+     * @param string $class
+     * @param array $params
+     * @return mixed
+     */
+    public function queryEach(string $sql, string $class, array $params = [])
+    {
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute($params);
+            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+
+            while($row = $sth->fetch()) {
+                yield $row;
+            };
+
+        } catch (\PDOException $e) {
+            $exc = new DbException($e->getMessage(), $e->getCode());
+            Logger::getInstance()->error($exc);
+            throw $exc;
+        }
+    }
 
     /*
      * Выполняет запрос к БД

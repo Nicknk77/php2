@@ -45,6 +45,9 @@ hr {
 .right {
     float: right;
 }
+.center {
+    margin-right: 350px;
+}
 .container, .menu {
     width: 1100px;
     margin: 0 auto;
@@ -104,13 +107,15 @@ div .delete, div .update, div .add {
 }
 .delete {
     background-image: url(/images/delete.png);
-
 }
 .update {
     background-image: url(/images/update.png);
 }
 .add {
     background-image: url(/images/add.png);
+}
+.new {
+    padding-top: 5px;
 }
 div .error403, div .error404, div .errorDb {
     height: 512px;
@@ -130,4 +135,16 @@ div .error403, div .error404, div .errorDb {
 }
 .errorDb {
     background-image: url(/images/500.png);
+}
+.admin {
+    margin-top: 10px;
+
+}
+.admin th, .admin td {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+.admin th {
+    font-weight: bold;
+    text-align: center;
 }

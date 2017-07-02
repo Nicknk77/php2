@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\AdminDataTable;
 use App\Logger;
 use App\Controller;
 use App\Models\Article;
@@ -23,8 +24,34 @@ class News
      */
     protected function actionAll()
     {
-        $this->view->news = Article::findAll();
+        $this->view->news = Article::findAllLines();
         $this->view->display(__DIR__ . '/../../../templates/admin/index.php');
+    }
+
+    /*
+     * Метод actionDefault
+     * Выводит список всех новостей
+     */
+    protected function actionDefault()
+    {
+        $this->view->news = (new AdminDataTable(
+            Article::findAll(),
+            [
+            function($article) {
+                return $article->id;
+            },
+            function($article) {
+                return $article->date;
+            },
+            function($article) {
+                return $article->header;
+            },
+            function($article) {
+                return $article->text;
+            }
+            ]
+        ))->render();
+        $this->view->display(__DIR__ . '/../../../templates/admin/table.php');
     }
 
     /*
@@ -50,7 +77,7 @@ class News
      */
     protected function actionEdit()
     {
-        if (false === $this->isNew()) {
+        if (!empty($_GET['id'])) {
             $id = (int)$_GET['id'];
             $this->view->article = Article::findById($id);
 
@@ -120,17 +147,5 @@ class News
             header('Location: /admin/news');
             die();
         }
-    }
-
-    /*
-     * Проверяет добавляется новый элемент или редактируется существующий
-     *
-     * @return bool
-     */
-    public function isNew() {
-        if (empty($_GET['id'])) {
-            return true;
-        }
-        return false;
     }
 }
