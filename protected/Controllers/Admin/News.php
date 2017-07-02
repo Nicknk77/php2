@@ -37,16 +37,16 @@ class News
         $this->view->news = (new AdminDataTable(
             Article::findAll(),
             [
-            function($article) {
+            function(Article $article) {
                 return $article->id;
             },
-            function($article) {
+            function(Article $article) {
                 return $article->date;
             },
-            function($article) {
+            function(Article $article) {
                 return $article->header;
             },
-            function($article) {
+            function(Article $article) {
                 return $article->text;
             }
             ]

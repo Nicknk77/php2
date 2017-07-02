@@ -185,7 +185,7 @@ abstract class Model
 
         foreach ($data as $key => $value) {
 
-            $method = 'filter_' . $key;
+            $method = 'filter' . ucfirst($key);
             if (method_exists($this, $method)) {
                 $value = $this->$method($value);
             }

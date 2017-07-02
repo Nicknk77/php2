@@ -36,19 +36,19 @@ class Article
         return $this->data[$name];
     }
 
-    public function filter_id($id) {
+    public function filterId($id) {
         return (int)$id;
     }
 
-    public function filter_author_id($id) {
+    public function filterAuthor_id($id) {
         return (int)$id;
     }
 
-    public function filter_header($header) {
+    public function filterHeader($header) {
         return strip_tags(trim($header));
     }
 
-    public function filter_text($text) {
+    public function filterText($text) {
         return strip_tags(trim($text), '<p><br>');
     }
 }
