@@ -185,7 +185,14 @@ abstract class Model
 
         foreach ($data as $key => $value) {
             try {
+                $method = 'validate_' . $key;
+
+                if (method_exists($this, $method)) {
+                    $value = $this->$method($value);
+                }
+
                 $this->$key = $value;
+
             } catch(\Exception $e) {
                 $errors->add($e);
             }

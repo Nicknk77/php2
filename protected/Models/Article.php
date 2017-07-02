@@ -36,4 +36,20 @@ class Article
         }
         return $this->data[$name];
     }
+
+    public function validate_id($id) {
+        return (int)$id;
+    }
+
+    public function validate_author_id($id) {
+        return (int)$id;
+    }
+
+    public function validate_header($header) {
+        return strip_tags(trim($header));
+    }
+
+    public function validate_text($text) {
+        return strip_tags(trim($text), '<p><br>');
+    }
 }
