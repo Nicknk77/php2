@@ -20,7 +20,6 @@ use App\Exceptions\NotFoundException;
 class Article
     extends Model
 {
-
     protected static $table = 'news';
 
     public function __get($name)

@@ -166,10 +166,10 @@ abstract class Model
     }
 
     /*
- * Проверяет добавляется новый элемент или редактируется существующий
- *
- * @return bool
- */
+     * Проверяет добавляется новый элемент или редактируется существующий
+     *
+     * @return bool
+     */
     public function isNew() {
         return empty($this->id);
     }
