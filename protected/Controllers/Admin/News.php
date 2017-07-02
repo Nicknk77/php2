@@ -97,10 +97,9 @@ class News
      */
     protected function actionSave()
     {
-        if (isset($_POST['edit']) && !empty($_POST['header']) && !empty($_POST['text'])){
+        if (!empty($_POST['header']) && !empty($_POST['text'])){
             if (!empty($_POST['id'])) {
-                $id = (int)$_POST['id'];
-                $article = Article::findById($id);
+                $article = Article::findById((int)$_POST['id']);
 
                 if (empty($article)) {
                     $exc = new NotFoundException('Новость не найдена!');
@@ -108,18 +107,13 @@ class News
                     throw $exc;
                 }
 
-                $article->id = $id;
             } else {
                 $article = new Article();
             }
 
-            $article->date   = date('Y-m-d');
-            $article->header = strip_tags(trim($_POST['header']));
-            $article->text   = trim($_POST['text']);
+            $article->fill($_POST);
 
-            if (!empty($_POST['author_id'])){
-                $article->author_id = (int)($_POST['author_id']);
-            } else {
+            if (empty($_POST['author_id'])){
                 $article->author_id = null;
             }
 

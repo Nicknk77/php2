@@ -16,6 +16,8 @@
     <div class="article">
         <h4>Редактировать статью</h4>
         <form action="/admin/news/save" method="post">
+            Дата:
+            <input type="date" name="date" value="<?php if (!empty($this->article->date)) {echo $this->article->date;} ?>" required>
             Автор:
             <select name="author_id">
                 <option value=""></option>
@@ -33,8 +35,12 @@
             <input type="text" name="header" value="<?php if (!empty($this->article->header)) {echo $this->article->header;} ?>" required>
             Текст:
             <textarea name="text" required><?php if (!empty($this->article->text)) {echo $this->article->text;} ?></textarea>
-            <input type="hidden" name="id" value="<?php if (!empty($this->article->id)) {echo $this->article->id;} ?>">
-            <input type="submit" name="edit" value="Отправить">
+
+            <?php if (!empty($this->article->id)): ?>
+            <input type="hidden" name="id" value="<?php echo $this->article->id; ?>">
+            <?php endif; ?>
+
+            <input type="submit" value="Отправить">
         </form>
     </div>
 </div>
