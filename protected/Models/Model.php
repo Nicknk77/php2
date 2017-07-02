@@ -184,15 +184,14 @@ abstract class Model
         $errors = new MultiExceptions();
 
         foreach ($data as $key => $value) {
+
+            $method = 'filter_' . $key;
+            if (method_exists($this, $method)) {
+                $value = $this->$method($value);
+            }
+
             try {
-                $method = 'validate_' . $key;
-
-                if (method_exists($this, $method)) {
-                    $value = $this->$method($value);
-                }
-
                 $this->$key = $value;
-
             } catch(\Exception $e) {
                 $errors->add($e);
             }

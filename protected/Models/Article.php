@@ -36,19 +36,19 @@ class Article
         return $this->data[$name];
     }
 
-    public function validate_id($id) {
+    public function filter_id($id) {
         return (int)$id;
     }
 
-    public function validate_author_id($id) {
+    public function filter_author_id($id) {
         return (int)$id;
     }
 
-    public function validate_header($header) {
+    public function filter_header($header) {
         return strip_tags(trim($header));
     }
 
-    public function validate_text($text) {
+    public function filter_text($text) {
         return strip_tags(trim($text), '<p><br>');
     }
 }
