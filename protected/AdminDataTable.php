@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\View;
+
 /*
  * Class AdminDataTable
  * Класс админ-панели
@@ -19,16 +21,13 @@ class AdminDataTable
         $this->functions = $functions;
     }
 
-    public function render()
+    public function render($template)
     {
-        $table = [];
-        foreach ($this->models as $model) {
-            $line = [];
-            foreach ($this->functions as $function) {
-                $line[] = $function($model);
-            }
-            $table[] = $line;
-        }
-        return $table;
+        $view = new View();
+
+        $view->models    = $this->models;
+        $view->functions = $this->functions;
+
+        return $view->render($template);
     }
 }

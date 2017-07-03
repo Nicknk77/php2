@@ -30,28 +30,12 @@ class News
 
     /*
      * Метод actionDefault
-     * Выводит список всех новостей
+     * Выводит список всех новостей (AdminDataTable)
      */
     protected function actionDefault()
     {
-        $this->view->news = (new AdminDataTable(
-            Article::findAll(),
-            [
-            function(Article $article) {
-                return $article->id;
-            },
-            function(Article $article) {
-                return $article->date;
-            },
-            function(Article $article) {
-                return $article->header;
-            },
-            function(Article $article) {
-                return $article->text;
-            }
-            ]
-        ))->render();
-        $this->view->display(__DIR__ . '/../../../templates/admin/table.php');
+        $this->view->news = Article::findAll();
+        $this->view->display(__DIR__ . '/../../../templates/admin/admin.php');
     }
 
     /*
