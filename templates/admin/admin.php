@@ -17,8 +17,8 @@
 
     <?php
         echo (new \App\AdminDataTable(
-            $this->news,
-            require __DIR__ . '/../../protected/Functions/adminDataFunctions.php'))->render(__DIR__ . '/table.php');
+                $this->news,
+                require __DIR__ . '/../../protected/Functions/adminDataFunctions.php'))->render(__DIR__ . '/table.php');
     ?>
 
 </div>
