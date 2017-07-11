@@ -26,7 +26,7 @@ if ($parts[1] === 'Admin'){
         $controller->action('403');
     }
 
-    $actionName = (!empty($parts[3]) ? $parts[3] : 'Default');
+    $actionName = (!empty($parts[3]) ? $parts[3] : 'All');
 
 } else {
 

@@ -20,39 +20,12 @@ class News
 {
     /*
      * Метод actionAll
-     * Выводит список всех новостей
+     * Выводит список всех новостей (AdminDataTable)
      */
     protected function actionAll()
     {
-        $this->view->news = Article::findAllLines();
-        $this->view->display(__DIR__ . '/../../../templates/admin/index.php');
-    }
-
-    /*
-     * Метод actionDefault
-     * Выводит список всех новостей (AdminDataTable)
-     */
-    protected function actionDefault()
-    {
         $this->view->news = Article::findAll();
-        $this->view->display(__DIR__ . '/../../../templates/admin/admin.php');
-    }
-
-    /*
-     * Метод actionOne
-     * Выводит одну конкретную новость
-     */
-    protected function actionOne()
-    {
-        $news = $this->view->article = Article::findById($_GET['id']);
-
-        if (empty($news)) {
-            $exc = new NotFoundException('Новость не найдена!');
-            Logger::getInstance()->error($exc);
-            throw $exc;
-        }
-
-        $this->view->display(__DIR__ . '/../../../templates/admin/article.php');
+        $this->view->display(__DIR__ . '/../../../templates/admin/news/all.php');
     }
 
     /*
@@ -72,7 +45,7 @@ class News
             }
         }
         $this->view->authors = Author::findAll();
-        $this->view->display(__DIR__ . '/../../../templates/admin/editArticle.php');
+        $this->view->display(__DIR__ . '/../../../templates/admin/news/editArticle.php');
     }
 
     /*

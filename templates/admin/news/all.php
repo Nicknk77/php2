@@ -8,8 +8,7 @@
 <body>
 
 <div class="menu">
-    <div class="right"><a href="/admin/news/All">Администрирование</a></div>
-    <div class="right center"><a href="/admin/news">Админ-таблица</a></div>
+    <div class="right"><a href="/admin/news">Администрирование</a></div>
     <div class="left"><a href="/news">Главная</a></div>
 </div>
 <div class="container">
@@ -17,8 +16,8 @@
 
     <?php
         echo (new \App\AdminDataTable(
-                $this->news,
-                require __DIR__ . '/../../protected/Functions/adminDataFunctions.php'))->render(__DIR__ . '/table.php');
+            $this->news,
+            require __DIR__ . '/../../../protected/Functions/adminDataFunctions.php'))->render(__DIR__ . '/table.php');
     ?>
 
 </div>
