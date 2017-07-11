@@ -23,7 +23,7 @@ class News
     protected function actionDefault()
     {
         $this->view->news = Article::findLatest(3);
-        $this->view->display(__DIR__ . '/../../templates/index.php');
+        $this->view->display(__DIR__ . '/../../templates/news/default.php');
     }
 
     /*
@@ -33,7 +33,7 @@ class News
     protected function actionAll()
     {
         $this->view->news = Article::findAll();
-        $this->view->display(__DIR__ . '/../../templates/index.php');
+        $this->view->display(__DIR__ . '/../../templates/news/default.php');
     }
 
     /*
@@ -48,6 +48,6 @@ class News
             Logger::getInstance()->error($exc);
             throw $exc;
         }
-        $this->view->display(__DIR__ . '/../../templates/article.php');
+        $this->view->display(__DIR__ . '/../../templates/news/article.php');
     }
 }
