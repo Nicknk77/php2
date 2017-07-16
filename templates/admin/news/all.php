@@ -15,9 +15,9 @@
     <a href="/admin/news/edit" class="new block">Создать статью</a>
 
     <?php
-        echo (new \App\AdminDataTable(
+        echo (new \App\View\AdminDataTable(
             $this->news,
-            require __DIR__ . '/../../../protected/Functions/adminDataFunctions.php'))->render(__DIR__ . '/table.php');
+            require __DIR__ . '/../../../protected/View/adminDataFunctions.php'))->render(__DIR__ . '/table.php');
     ?>
 
 </div>
